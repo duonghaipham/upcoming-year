@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'Arsilon';
+  src: url("../public/fonts/SVN-Arsilon.otf");
+}
+
+.home_page {
+  .content {
+    .relative {
+      position: relative;
+      max-width: 1920px;
+      height: 600px;
+
+      .welcome {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-family: "Arsilon", cursive;
+        font-size: 5rem;
+        text-align: center;
+      }
+
+      .countdown {
+        position: absolute;
+        left: 50%;
+        bottom: -2rem;
+        transform: translateX(-50%);
+        text-transform: uppercase;
+
+        .cd_title {
+          margin-bottom: 0.75rem;
+          color: #fff;
+          font-size: 1.5rem;
+          font-weight: 700;
+          letter-spacing: 2.5px;
+          word-spacing: 4px;
+          text-align: center;
+        }
+
+        .cd_content {
+          display: flex;
+          justify-content: center;
+
+          .day {
+
+          }
+
+          .hour {
+            margin: 0 1.5rem;
+          }
+
+          .minute {
+
+          }
+
+          .cd_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 75px;
+            height: 80px;
+            margin-top: 0.5rem;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #903;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);
+          }
+
+          .cd_label {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-align: center;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .home_page {
+    .content {
+      .relative {
+        .welcome {
+          font-size: 12vw;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .home_page {
+    .content {
+      .relative {
+        height: 450px;
+
+        .welcome {
+          top: 40%;
+        }
+      }
+    }
+  }
+}
