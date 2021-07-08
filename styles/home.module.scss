@@ -24,7 +24,7 @@
       .countdown {
         position: absolute;
         left: 50%;
-        bottom: -2rem;
+        bottom: -1.5rem;
         transform: translateX(-50%);
         text-transform: uppercase;
 
@@ -43,30 +43,37 @@
           justify-content: center;
 
           .day {
-
+            margin-right: 0.5rem;
           }
 
           .hour {
-            margin: 0 1.5rem;
+            margin-right: 0.25rem;
           }
 
           .minute {
-
+            margin-left: 0.25rem;
           }
 
-          .cd_box {
+          .second {
+            margin-left: 0.5rem;
+          }
+
+          .cd_group_box {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 75px;
-            height: 80px;
-            margin-top: 0.5rem;
-            border-radius: 5px;
-            background-color: #fff;
-            color: #903;
-            font-size: 1.5rem;
-            font-weight: 600;
-            box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);
+
+            .cd_box {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 50px;
+              height: 60px;
+              margin: 0.5rem 2.5px 0;
+              border-radius: 5px;
+              background-color: #fff;
+              color: #b50102;
+              font-size: 2rem;
+              box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+            }
           }
 
           .cd_label {
@@ -103,6 +110,28 @@
 
         .welcome {
           top: 40%;
+        }
+
+        .countdown {
+          bottom: -1rem;
+
+          .cd_title {
+            font-size: 1.25rem;
+          }
+
+          .cd_content {
+            .cd_group_box {
+              .cd_box {
+                width: 32.5px;
+                height: 45px;
+                font-size: 1.5rem;
+              }
+            }
+
+            .cd_label {
+              font-size: 0.75rem;
+            }
+          }
         }
       }
     }
