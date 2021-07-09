@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Countdown from "components/coundown"
 import Footer from "../components/footer"
+import Minigame from "../components/minigame";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
 
       <main>
         <Countdown />
+        <Minigame />
       </main>
       <Footer />
     </div>

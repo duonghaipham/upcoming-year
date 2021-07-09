@@ -1,0 +1,99 @@
+.game {
+  padding: 0 10%;
+
+  .game_title {
+    font-family: Roboto, sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .game_list {
+    display: flex;
+
+    .this_game {
+      width: 300px;
+      margin-right: 1.5rem;
+      list-style-type: none;
+
+      .game_img {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        background-size: 100%;
+
+        &:hover {
+          transform: scale(1.1);
+          transition-duration: 0.75s;
+        }
+
+        &:hover > .game_ornament {
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+          animation-name: swing;
+        }
+
+        .game_ornament {
+          position: absolute;
+          width: 125px;
+          height: 125px;
+          bottom: -1rem;
+          right: -0.5rem;
+          background-size: 100%;
+        }
+      }
+
+      .wheel {
+        background-image: url("../public/img/wheel.jpg");
+
+        .god_of_wealth {
+          background-image: url("../public/svg/god-of-wealth.svg");
+        }
+      }
+
+      .quiz {
+        background-image: url("../public/img/quiz.jpg");
+
+        .girl_1 {
+          background-image: url("../public/svg/girl-1.svg");
+        }
+      }
+
+      .game_caption {
+        margin-bottom: 0.2rem;
+        font-weight: 500;
+      }
+
+      .game_description {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+@keyframes swing {
+  50% { transform: rotate(10deg); }
+}
+
+@media screen and (max-width: 540px) {
+  .game {
+    padding: 0 5%;
+
+    .game_list {
+      flex-direction: column;
+
+      .this_game {
+        width: 100%;
+        margin: 0 0 1rem;
+
+        .game_img {
+          height: 90vw;
+
+          &:hover {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
