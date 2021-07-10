@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "Pepper Hands";
+  src: url("../public/fonts/SVN-Pepper-Hands.ttf");
+}
+
+.quiz_instruct {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #910005;
+
+  .inst_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+
+    .main_instruct {
+      width: 100%;
+      height: 30vw;
+      padding: 1.5rem 2rem;
+      background-image: url("../public/svg/frame.svg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+
+      .inst_title {
+        background: linear-gradient(45deg, #9a580e 0%, #fef590 80%);
+        background-clip: text;
+        color: transparent;
+        font-family: "Pepper Hands", sans-serif;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .inst_content {
+        color: #fef590;
+        opacity: 0.85;
+        letter-spacing: 1px;
+      }
+    }
+
+    .cancel_quiz,
+    .start_quiz {
+      width: 75%;
+      padding: 0.5rem 0;
+      background: linear-gradient(45deg, #9a580e 0%, #fef590 80%);
+      color: #b50102;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+    }
+
+    .cancel_quiz {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .start_quiz {
+      border-style: none;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .quiz_instruct {
+    .inst_container {
+      width: 100%;
+
+      .main_instruct {
+        width: 90%;
+        height: 60vw;
+        margin: 0 auto;
+      }
+    }
+  }
+}

@@ -2,12 +2,17 @@
   padding: 0 10%;
 
   .game_title {
-    font-family: Roboto, sans-serif;
     margin-bottom: 1rem;
+    font-weight: 600;
+
+    .spin {
+      animation: rotate 8s infinite;
+    }
   }
 
   .game_list {
     display: flex;
+    flex-wrap: wrap;
 
     .this_game {
       width: 300px;
@@ -19,18 +24,17 @@
         width: 100%;
         height: 300px;
         margin-bottom: 1rem;
-        border-radius: 10px;
         background-size: 100%;
 
         &:hover {
           transform: scale(1.1);
           transition-duration: 0.75s;
-        }
 
-        &:hover > .game_ornament {
-          animation-duration: 1s;
-          animation-iteration-count: infinite;
-          animation-name: swing;
+          > .game_ornament {
+            animation-duration: 1s;
+            animation-iteration-count: 3;
+            animation-name: swing;
+          }
         }
 
         .game_ornament {
@@ -61,11 +65,28 @@
 
       .game_caption {
         margin-bottom: 0.2rem;
-        font-weight: 500;
+        font-weight: 600;
       }
 
       .game_description {
+        margin-bottom: 0.5rem;
+        font-size: 0.75rem;
+      }
+
+      .game_join {
+        width: 100%;
+        border-style: none;
+        padding: 0.5rem 0;
+        outline: none;
+        background: linear-gradient(45deg, #930504 0%, #b50102 80%);
+        cursor: pointer;
+        color: #fff;
         font-size: 0.8rem;
+        letter-spacing: 1px;
+
+        &:hover {
+          opacity: 0.75;
+        }
       }
     }
   }
@@ -75,7 +96,12 @@
   50% { transform: rotate(10deg); }
 }
 
-@media screen and (max-width: 540px) {
+@keyframes rotate {
+  0% { transform: rotate(360deg); }
+  33% { transform: rotate(0deg); }
+}
+
+@media screen and (max-width: 720px) {
   .game {
     padding: 0 5%;
 
@@ -84,7 +110,7 @@
 
       .this_game {
         width: 100%;
-        margin: 0 0 1rem;
+        margin: 0 0 2rem;
 
         .game_img {
           height: 90vw;
