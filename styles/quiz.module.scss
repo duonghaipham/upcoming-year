@@ -1,0 +1,49 @@
+@mixin quiz-decoration($top, $right, $bottom, $left, $scale) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  transform: scale($scale);
+}
+
+.quiz {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-image: url("../public/svg/dot.svg");
+
+  .quiz_decor {
+    .decor_lantern_left {
+      @include quiz-decoration(-1rem, auto, auto, 0.5rem, 0.85);
+    }
+
+    .decor_lantern_right {
+      @include quiz-decoration(-1rem, 0.5rem, auto, auto, 0.85);
+    }
+
+    .decor_food {
+      @include quiz-decoration(auto, auto, 0, 0, 0.8);
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .quiz {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 720px) {
+  .quiz {
+    .quiz_decor {
+      .decor_food {
+        @include quiz-decoration(auto, auto, -2rem, 0, 0.5);
+      }
+    }
+  }
+}

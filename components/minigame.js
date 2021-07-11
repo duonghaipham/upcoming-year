@@ -4,7 +4,7 @@ import styles from 'styles/minigame.module.scss'
 const Minigame = () => {
   return (
     <div className={styles.game}>
-      <h2 className={styles.game_title}><i className={`${styles.spin} fa`}>&#xf11b;</i> Tham gia trò chơi</h2>
+      <h2 className={styles.game_title}><i className={`${styles.spin} fa`}>&#xf11b;</i> Hot!!! Mini-game</h2>
       <ul className={styles.game_list}>
         <li className={styles.this_game}>
           <div className={`${styles.game_img} ${styles.wheel}`}>
@@ -20,7 +20,7 @@ const Minigame = () => {
           <div className={`${styles.game_img} ${styles.quiz}`}>
             <div className={`${styles.game_ornament} ${styles.girl_1}`} />
           </div>
-          <figcaption className={styles.game_caption}>Đố vui</figcaption>
+          <figcaption className={styles.game_caption}>Đố vui đố cộc</figcaption>
           <p className={styles.game_description}>Kiến thức càng rộng, lì xì càng nhiều</p>
           <Link href='/game/quiz'>
             <a><button className={styles.game_join}>Tham gia</button></a>
