@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Pepper Hands";
+  src: url("../public/fonts/SVN-Pepper-Hands.ttf");
+}
+
 @mixin quiz-decoration($top, $right, $bottom, $left, $scale) {
   position: absolute;
   top: $top;

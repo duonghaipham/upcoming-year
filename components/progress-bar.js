@@ -14,7 +14,7 @@ const ProgressBar = (props) => {
       else
         setPercentage(percentage + 1);
     }, 15);
-  }
+  };
 
   useEffect(() => {
     startProgress();
