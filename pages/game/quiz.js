@@ -1,12 +1,12 @@
+import {useState} from 'react'
 import Head from 'next/head'
-import React, {useState} from "react";
+import Image from 'next/image'
 import QuizInstruct from 'components/quiz-instruct'
 import InQuiz from 'components/in-quiz'
 import ProgressBar from 'components/progress-bar'
 import styles from 'styles/quiz.module.scss'
-import Image from "next/image";
-import lantern from "../../public/svg/lantern.svg";
-import food from "../../public/svg/food.svg";
+import lantern from 'public/svg/lantern.svg';
+import food from 'public/svg/food.svg';
 
 const Quiz = () => {
   const [status, setStatus] = useState("instruction");
@@ -17,9 +17,9 @@ const Quiz = () => {
 
   let process;
   if (status === 'instruction')
-    process = <QuizInstruct onUserClick={stateGame} />;
+    process = <QuizInstruct setStateGame={stateGame} />;
   else if (status === 'progress-bar')
-    process = <ProgressBar />
+    process = <ProgressBar setStateGame={stateGame} />
   else
     process = <InQuiz />
 

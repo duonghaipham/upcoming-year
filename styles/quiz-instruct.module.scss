@@ -17,18 +17,12 @@
     padding: 1.5rem 2rem;
 
     .instr_title {
-      margin-bottom: 0.5rem;
+      margin-bottom: 2rem;
       font-family: "Pepper Hands", sans-serif;
       font-weight: 500;
       line-height: 1.25;
       text-align: center;
       text-shadow: 1.5px 1.5px 2px rgba(97, 55, 44, 0.5);
-    }
-
-    .hr {
-      height: 2px;
-      margin: 0.75rem 0 1rem;
-      border-style: none;
     }
 
     .instr_content {
@@ -52,7 +46,7 @@
       padding: 0.5rem 0;
       background: #df0805;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.8rem;
       letter-spacing: 1.5px;
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.35);
     }

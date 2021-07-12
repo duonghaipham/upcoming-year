@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState} from "react";
-import Image from "next/image";
-import lanterns from "../public/img/lanterns.jpg";
-import styles from "../styles/countdown.module.scss";
+import {useEffect, useRef, useState} from 'react'
+import Image from 'next/image'
+import lanterns from 'public/img/lanterns.jpg'
+import styles from 'styles/countdown.module.scss'
 
 const Countdown = () => {
   const [timerDays, setTimerDays] = useState(null);
