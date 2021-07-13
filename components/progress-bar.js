@@ -9,7 +9,7 @@ const ProgressBar = (props) => {
     interval = setInterval(() => {
       if (percentage === 100) {
         clearInterval(interval.current);
-        props.setStateGame('in-quiz');
+        props.setStateGame(props.progressBar);
       }
       else
         setPercentage(percentage + 1);

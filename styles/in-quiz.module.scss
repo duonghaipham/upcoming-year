@@ -91,11 +91,11 @@
         box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.25);
         cursor: pointer;
 
-        &:hover {
-          transform: scale(1.05);
-          transition-duration: 500ms;
-          background-color: #01a063;
-          color: #fff;
+        @media (hover: hover) {
+          &:hover {
+            transform: scale(1.1);
+            transition-duration: 500ms;
+          }
         }
       }
     }
@@ -118,50 +118,66 @@
 
     .hr {
       height: 1.5px;
-      margin: 0.25rem 0 0.5rem;
+      margin: 0.5rem 0 0.75rem;
       border-style: none;
       background-color: #61372c;
     }
 
     .conclusion_name {
       margin-bottom: 0.75rem;
-      background: linear-gradient(45deg, #930504 0%, #b50102 80%);
-      background-clip: text;
-      color: transparent;
+      color: #b50102;
       font-size: 1.5rem;
       font-weight: 500;
       text-align: center;
     }
 
-    .conclusion_num_corrects,
-    .conclusion_score {
+    .conclusion_total_time {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
 
-      .label {
-        margin-right: 1.5rem;
-      }
-      .value {
-        color: #01a063;
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
+    .conclusion_score {
+      margin-bottom: 1rem;
+      color: #01a063;
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1;
+      text-align: center;
     }
 
     .conclusion_num_corrects {
-      margin-bottom: 0.25rem;
+      .num_corrects_total {
+        display: flex;
+        justify-content: space-between;
+
+        .value {
+          text-decoration: underline;
+          text-underline-offset: 2px;
+          cursor: pointer;
+        }
+      }
+
+      .list_corrects {
+        display: none;
+        margin: 0.25rem 0 0 0.75rem;
+        list-style-type: none;
+        font-size: 0.9rem;
+
+        .correct {
+          margin-right: 1rem;
+        }
+      }
     }
 
     .go_back {
       display: block;
       width: 100%;
-      margin-top: 1.5rem;
-      border-radius: 1rem;
+      border-radius: 10px;
       padding: 0.5rem 0;
       background: linear-gradient(45deg, #930504 0%, #b50102 80%);
       color: #fff;
-      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.35);
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.25);
       text-align: center;
 
       &:hover {

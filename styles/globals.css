@@ -17,3 +17,14 @@ a {
   margin: 0;
   padding: 0;
 }
+
+@keyframes blink-green {
+  0%, 49% {
+    color: #fff;
+    background-color: #00bf77;
+  }
+  50%, 100% {
+    color: #000;
+    background-color: #fcecae;
+  }
+}
