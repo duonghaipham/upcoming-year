@@ -6,6 +6,25 @@ const InQuiz = () => {
   const QUIZ_IN_PROGRESS = 0;
   const QUIZ_END = 1;
 
+  const comments = [
+    [
+      ["Xứng danh cao thủ", "Vừa nhanh vừa chính xác"],
+      ["Chơi hay vậy ra chuồng gà chơi nhe", "Chơi vậy ai chơi lại"]
+    ],
+    [
+      ["Làm nhanh như The Flash", "Kẻ hủy diệt câu hỏi..."],
+      ["Ngon rồi!!!", "Siêu cấp vip pro quá"]
+    ],
+    [
+      ["Không tồi!!!", "Chơi vui là chính, lì xì là mười"],
+      ["Câu hỏi hơi khó hé?!", "Híc híc"],
+    ],
+    [
+      ["Cố gắng thêm nữa nhe", "Quá nhanh, quá 'ẩu'"],
+      ["Sao chơi 'hay' dữ vậy", "Cuộc sống mà..."]
+    ]
+  ];
+
   const questions = [
     {
       questionText: "Lang Liêu là con của Vua Hùng thứ mấy?",
@@ -27,42 +46,61 @@ const InQuiz = () => {
     }
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [remainedTime, setRemainedTime] = useState(30);
-  const [score, setScore] = useState(0);
-  const [result, setResult] = useState([]);
-  const [stateQuiz, setStateQuiz] = useState(QUIZ_IN_PROGRESS);
+  const [stateQuiz, setStateQuiz] = useState(QUIZ_IN_PROGRESS);        // determine whether in-progress or conclusion
+  const [currentQuestion, setCurrentQuestion] = useState(0);  // the current question is being taken
+  const [remainedTime, setRemainedTime] = useState(30);       // the remained time for the current question
+  const [score, setScore] = useState(0);                      // accumulative sum up to now
+  const [comment, setComment] = useState('');                 // the comment in the conclusion
 
-  const totalTime = useRef(0);
-  const resultList = useRef();
-  const correctAnswer = useRef();
-  let interval = useRef();
-
-  const startTimeDown = () => {
-    interval = setInterval(() => {
-      if (remainedTime === 0) {
-        handleAnswerClick(false);
-      }
-      else
-        setRemainedTime(remainedTime - 1);
-    }, 1000);
-  };
+  const result = useRef([]);     // the array of results (right or wrong)
+  const totalTime = useRef(0);   // the total time which user take
+  const correctAnswer = useRef();         // the correct answer for each question (for blink)
+  let interval = useRef(null);
 
   useEffect(() => {
-    startTimeDown();
-    return () => clearInterval(interval);
-  });
+    interval.current = setInterval(() => {
+      if (remainedTime === 0)
+        handleAnswerClick(false);
+      else
+        setRemainedTime(r => r - 1);
+    }, 1000);
+    return () => clearInterval(interval.current);
+  }, [currentQuestion, questions.length, remainedTime]);
+
+  useEffect(() => {
+    const scoreToIndex = () => {
+      const decScore = result.current.filter((value) => value.isCorrect).length / result.current.length;
+      if (decScore >= 0.75)
+        return 0;
+      else if (decScore >= 0.5)
+        return 1;
+      else if (decScore >= 0.25)
+        return 2;
+      else
+        return 3;
+    }
+
+    const timeToIndex = () => {
+      const decTime = 1 - totalTime.current / (questions.length * 30);
+      if (decTime >= 0.5)
+        return 0;
+      else
+        return 1;
+    }
+    if (stateQuiz === QUIZ_END) {
+      setComment(comments[scoreToIndex()][timeToIndex()][Math.floor(Math.random() * 2)]);
+    }
+  }, [comments, questions.length, score, stateQuiz]);
 
   // handle to click on answer option
   const handleAnswerClick = (isCorrect) => {
-    clearInterval(interval);
-    if (isCorrect === true) {
-      setScore(parseFloat((score + remainedTime / 3).toFixed(2)));
-      result.push({ index: currentQuestion, isCorrect: true });
+    clearInterval(interval.current);
+    if (isCorrect) {
+      setScore(s => parseFloat((s + remainedTime / 3).toFixed(2)));
+      result.current.push({ index: currentQuestion, isCorrect: true });
     }
     else
-      result.push({ index: currentQuestion, isCorrect: false });
-    setResult(result);
+      result.current.push({ index: currentQuestion, isCorrect: false });
 
     if (correctAnswer.current !== null)
       correctAnswer.current.style.animation = 'blink-green 500ms infinite';
@@ -81,14 +119,6 @@ const InQuiz = () => {
         setStateQuiz(QUIZ_END);
       }, 1500);
     }
-  }
-
-  // handle to click on number corrects
-  const handleViewResult = () => {
-    if (resultList.current.style.display === 'block')
-      resultList.current.style.display = 'none';
-    else
-      resultList.current.style.display = 'block';
   }
 
   return (stateQuiz === QUIZ_IN_PROGRESS) ?
@@ -114,7 +144,7 @@ const InQuiz = () => {
         </div>
         <ol className={styles.options}>
           {questions[currentQuestion].answerOptions.map((answerOption) =>
-            (answerOption.isCorrect === true) ?
+            (answerOption.isCorrect) ?
               <li className={styles.each_option} ref={correctAnswer} onClick={() => handleAnswerClick(answerOption.isCorrect)}>{answerOption.answerText}</li> :
               <li className={styles.each_option} onClick={() => handleAnswerClick(answerOption.isCorrect)}>{answerOption.answerText}</li>
           )}
@@ -135,12 +165,12 @@ const InQuiz = () => {
         <div className={styles.conclusion_num_corrects}>
           <div className={styles.num_corrects_total}>
             <div>Số câu đúng:</div>
-            <div className={styles.value} onClick={handleViewResult}>{result.filter((current) => current.isCorrect === true).length}/{result.length}</div>
+            <div className={styles.value}>{result.current.filter((current) => current.isCorrect).length}/{result.current.length}</div>
           </div>
-          <ul className={styles.list_corrects} ref={resultList}>
-            {result.map((current) => {
+          <ul className={styles.list_corrects}>
+            {result.current.map((current) => {
               let className, style;
-              if (current.isCorrect === true) {
+              if (current.isCorrect) {
                 className = 'fa fa-check';
                 style = { color: '#04aa6d', marginLeft: '1rem' };
               }
@@ -154,9 +184,8 @@ const InQuiz = () => {
         </div>
         <hr className={styles.hr} />
         <div className={styles.conclusion_score}>{score}</div>
-        <Link href='/'>
-          <a className={styles.go_back}>Về trang chủ</a>
-        </Link>
+        <p className={styles.conclusion_comment}>{comment}</p>
+        <Link href='/'><a className={styles.go_back}>Về trang chủ</a></Link>
       </div>
     </div>
 };
